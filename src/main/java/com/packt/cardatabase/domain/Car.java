@@ -22,11 +22,11 @@ public class Car {
 
 	public Car(String brand, String model, String color,
 			   String registerNumber, int year, int price,
-			   String ownerFirstName, String ownerLastName) {
+			   Owner owner) {
 
 		this(brand, model, color, registerNumber, year, price);
 
-		this.owner = new Owner(ownerFirstName, ownerLastName);
+		this.owner = owner;
 	}
 
 	//Getter  and  setter

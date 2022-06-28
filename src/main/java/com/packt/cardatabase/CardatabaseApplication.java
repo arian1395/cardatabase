@@ -1,6 +1,7 @@
 package com.packt.cardatabase;
 
 import com.packt.cardatabase.domain.Car;
+import com.packt.cardatabase.domain.Owner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,15 +26,18 @@ public class CardatabaseApplication  implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		logger.info("command runner is started: " + maxCounter);
+		// Add owner objects
+		Owner owner1 = new Owner("John" , "Johnson");
+		Owner owner2 = new  Owner("Mary" , "Robinson");
 
 		// create car objects
 		// owner1 : "John Johnson"
 		Car car1 = new Car("Ford", "Mustang", "Red",
-				"ADF-1121", 2021, 59000, "John", "Johnson");
+				"ADF-1121", 2021, 59000, owner1);
 		// owner2 : "Mary Robinson"
 		Car car2 = new Car("Nissan", "Leaf", "White",
-				"SSJ-3002", 2019, 29000, "Mary", "Robinson");
+				"SSJ-3002", 2019, 29000, owner2);
 		Car car3 = new Car("Toyota", "Prius", "Silver",
-				"KKO-0212", 2020, 39000, "Mary", "Robinson");
+				"KKO-0212", 2020, 39000, owner2);
 	}
 }
