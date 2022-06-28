@@ -29,11 +29,11 @@ public class CardatabaseApplication  implements CommandLineRunner {
 		// create car objects
 		// owner1 : "John Johnson"
 		Car car1 = new Car("Ford", "Mustang", "Red",
-				"ADF-1121", 2021, 59000);
+				"ADF-1121", 2021, 59000, "John", "Johnson");
 		// owner2 : "Mary Robinson"
 		Car car2 = new Car("Nissan", "Leaf", "White",
-				"SSJ-3002", 2019, 29000);
+				"SSJ-3002", 2019, 29000, "Mary", "Robinson");
 		Car car3 = new Car("Toyota", "Prius", "Silver",
-				"KKO-0212", 2020, 39000);
+				"KKO-0212", 2020, 39000, "Mary", "Robinson");
 	}
 }

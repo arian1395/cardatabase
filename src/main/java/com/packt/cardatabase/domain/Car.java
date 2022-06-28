@@ -20,6 +20,15 @@ public class Car {
 
 	private Owner owner;
 
+	public Car(String brand, String model, String color,
+			   String registerNumber, int year, int price,
+			   String ownerFirstName, String ownerLastName) {
+
+		this(brand, model, color, registerNumber, year, price);
+
+		this.owner = new Owner(ownerFirstName, ownerLastName);
+	}
+
 	//Getter  and  setter
 	public Owner getOwner()  {
 	    return owner;
