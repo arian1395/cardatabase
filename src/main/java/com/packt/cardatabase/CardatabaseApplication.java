@@ -8,12 +8,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import javax.annotation.Resource;
+import java.io.File;
 
 @SpringBootApplication
 public class CardatabaseApplication  implements CommandLineRunner {
 
 	@Value("${max.counter:4}")
 	private int maxCounter;
+
+	@Resource
+	private File currentFolder;
 
 	private static final Logger logger = LoggerFactory.getLogger(CardatabaseApplication.class);
 
@@ -26,6 +33,8 @@ public class CardatabaseApplication  implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		logger.info("command runner is started: " + maxCounter);
+		logger.info("current folder: " + currentFolder.getAbsolutePath());
+
 		// Add owner objects
 		Owner owner1 = new Owner("John" , "Johnson");
 		Owner owner2 = new  Owner("Mary" , "Robinson");
