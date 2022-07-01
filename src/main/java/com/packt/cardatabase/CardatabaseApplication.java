@@ -1,14 +1,15 @@
 package com.packt.cardatabase;
 
 import com.packt.cardatabase.domain.Car;
+import com.packt.cardatabase.domain.CarRepository;
 import com.packt.cardatabase.domain.Owner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -21,6 +22,9 @@ public class CardatabaseApplication  implements CommandLineRunner {
 
 	@Resource
 	private File currentFolder;
+
+	@Autowired
+	private CarRepository carRepository;
 
 	private static final Logger logger = LoggerFactory.getLogger(CardatabaseApplication.class);
 
@@ -46,10 +50,13 @@ public class CardatabaseApplication  implements CommandLineRunner {
 		car1.setOwner(owner1);
 		// owner2 : "Mary Robinson"
 		Car car2 = new Car("Nissan", "Leaf", "White",
-				"SSJ-3002", 2019, 29000);
+				"SSJ-3002", 2020, 29000);
 		car2.setOwner(owner2);
 		Car car3 = new Car("Toyota", "Prius", "Silver",
 				"KKO-0212", 2020, 39000);
 		car3.setOwner(owner2);
+		carRepository.save(car1);
+		carRepository.save(car2);
+		carRepository.save(car3);
 	}
 }
