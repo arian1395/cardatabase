@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Owner {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.AUTO, generator = "Owner_SEQ")
 	private long id;
 	private String firstname, lastname;
 	

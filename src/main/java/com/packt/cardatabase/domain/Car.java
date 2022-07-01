@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Car {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.AUTO, generator = "Car_SEQ")
 	private long id;
 	private String brand, model, color, registerNumber;
 	@Column(name = "PRODUCT_YEAR")
