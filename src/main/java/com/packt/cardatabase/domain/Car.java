@@ -25,7 +25,8 @@ public class Car {
 		this.price = price;
 	}
 
-	@Transient
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="owner")
 	private Owner owner;
 
 

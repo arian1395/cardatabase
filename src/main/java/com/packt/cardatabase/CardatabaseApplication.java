@@ -3,6 +3,7 @@ package com.packt.cardatabase;
 import com.packt.cardatabase.domain.Car;
 import com.packt.cardatabase.domain.CarRepository;
 import com.packt.cardatabase.domain.Owner;
+import com.packt.cardatabase.domain.OwnerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class CardatabaseApplication  implements CommandLineRunner {
 	@Autowired
 	private CarRepository carRepository;
 
+	@Autowired
+	private OwnerRepository ownerRepository;
 	private static final Logger logger = LoggerFactory.getLogger(CardatabaseApplication.class);
 
 	public static void main(String[] args) {
@@ -44,6 +47,8 @@ public class CardatabaseApplication  implements CommandLineRunner {
 		// Add owner objects
 		Owner owner1 = new Owner("John" , "Johnson");
 		Owner owner2 = new  Owner("Mary" , "Robinson");
+		ownerRepository.save(owner1);
+		ownerRepository.save(owner2);
 
 		// create car objects
 		// owner1 : "John Johnson"
@@ -64,9 +69,12 @@ public class CardatabaseApplication  implements CommandLineRunner {
 		// you should check otherwise you may get NoSuchElementException
 		if(myCar.isPresent()) {
 			Car theCar = myCar.get();
-			System.out.println("Brand: " +  theCar.getBrand());
+			logger.info("Car Brand: " +  theCar.getBrand());
+		} else {
+			logger.warn("CAR not found!");
 		}
-		List<Car> byYear = carRepository.findByYear(2020);
-		System.out.println("found:" + byYear.size());
+		List<Car> carsByYear = carRepository.findByYear(2020);
+		logger.info("car 2000 found: {}" , carsByYear.size());
+
 	}
 }

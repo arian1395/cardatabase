@@ -1,6 +1,12 @@
 package com.packt.cardatabase.domain;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class Owner {
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private long id;
 	private String firstname, lastname;
 	
@@ -11,7 +17,16 @@ public class Owner {
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
-	
+	@OneToMany(cascade= CascadeType.ALL, mappedBy="owner")
+	private List<Car> cars;
+
+	public List<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
 
 	public long getId() {
 		return id;
