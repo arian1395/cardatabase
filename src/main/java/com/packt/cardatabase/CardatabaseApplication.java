@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.Optional;
 
 @SpringBootApplication
 public class CardatabaseApplication  implements CommandLineRunner {
@@ -58,5 +59,11 @@ public class CardatabaseApplication  implements CommandLineRunner {
 		carRepository.save(car1);
 		carRepository.save(car2);
 		carRepository.save(car3);
+		Optional<Car> myCar = carRepository.findById(2L);
+		// you should check otherwise you may get NoSuchElementException
+		if(myCar.isPresent()) {
+			Car theCar = myCar.get();
+			System.out.println("Brand: " +  theCar.getBrand());
+		}
 	}
 }
