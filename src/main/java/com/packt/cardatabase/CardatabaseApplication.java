@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -65,5 +66,7 @@ public class CardatabaseApplication  implements CommandLineRunner {
 			Car theCar = myCar.get();
 			System.out.println("Brand: " +  theCar.getBrand());
 		}
+		List<Car> byYear = carRepository.findByYear(2020);
+		System.out.println("found:" + byYear.size());
 	}
 }
