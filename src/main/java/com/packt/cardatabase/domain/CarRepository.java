@@ -1,9 +1,11 @@
 package com.packt.cardatabase.domain;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface CarRepository extends CrudRepository<Car, Long> {
     // Fetch cars by brand
     List<Car> findByBrand(String brand);
