@@ -1,7 +1,9 @@
 package com.packt.cardatabase.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Owner {
@@ -17,14 +19,16 @@ public class Owner {
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
-	@OneToMany(cascade= CascadeType.ALL, mappedBy="owner")
-	private List<Car> cars;
-
-	public List<Car> getCars() {
+	@ManyToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name="car_owner",
+			joinColumns = { @JoinColumn(name="owner_id") },
+			inverseJoinColumns = { @JoinColumn(name="car_id") })
+	private Set<Car> cars = new HashSet<>();
+	public Set<Car> getCars() {
 		return cars;
 	}
 
-	public void setCars(List<Car> cars) {
+	public void setCars(Set<Car> cars) {
 		this.cars = cars;
 	}
 

@@ -36,17 +36,22 @@ public class MyService {
         // owner1 : "John Johnson"
         Car car1 = new Car("Ford", "Mustang", "Red",
                 "ADF-1121", 2021, 59000);
-        car1.setOwner(owner1);
+        car1.getOwners().add(owner1);
         // owner2 : "Mary Robinson"
         Car car2 = new Car("Nissan", "Leaf", "White",
                 "SSJ-3002", 2020, 29000);
-        car2.setOwner(owner2);
+        car2.getOwners().add(owner2);
         Car car3 = new Car("Toyota", "Prius", "Silver",
                 "KKO-0212", 2020, 39000);
-        car3.setOwner(owner2);
+        car3.getOwners().add(owner2);
         carRepository.save(car1);
         carRepository.save(car2);
         carRepository.save(car3);
+        // check if comment the following lines
+        owner1.getCars().add(car1);
+        owner2.getCars().add(car2);
+        owner2.getCars().add(car3);
+
         Optional<Car> myCar = carRepository.findById(2L);
         // you should check otherwise you may get NoSuchElementException
         if(myCar.isPresent()) {
@@ -57,7 +62,7 @@ public class MyService {
         }
         List<Car> carsByYear = carRepository.findByYear(2020);
         logger.info("car 2000 found: {}" , carsByYear.size());
-        logger.info("owner first name: {}" , carsByYear.get(0).getOwner().getFirstname());
+        logger.info("owner first name: {}" , carsByYear.get(0).getOwners().stream().findFirst().get().getFirstname());
      //   throw new RuntimeException();
     }
 }
