@@ -58,6 +58,6 @@ public class MyService {
         List<Car> carsByYear = carRepository.findByYear(2020);
         logger.info("car 2000 found: {}" , carsByYear.size());
         logger.info("owner first name: {}" , carsByYear.get(0).getOwner().getFirstname());
-        throw new RuntimeException();
+     //   throw new RuntimeException();
     }
 }
